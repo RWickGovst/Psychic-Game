@@ -8,39 +8,40 @@ var losses = 0;
 // var guessesLeft;
 var guessesLeft = 9;
 // var guessesMade;
-var guessesMade = 0;
+var guessesMade = '';
 
 var el = document.getElementById('game');
-el.textContent=heading;
+  el.textContent=heading;
+  
+  var elQuestion = document.getElementById('title');
+  elQuestion.textContent=question;
+  
+  var elWins = document.getElementById('wins');
+  elWins.textContent="Wins: " + wins;
+  
+  var elLosses = document.getElementById('losses');
+  elLosses.textContent="Losses: " + losses;
+  
+  var elGuessesLeft = document.getElementById('remaining');
+  elLosses.textContent="Guesses left: " + guessesLeft;
+  
+  var elGuessesMade = document.getElementById('guessed');
+  elGuessesMade.textContent= guessesMade.appendChild;
 
-var elQuestion = document.getElementById('title');
-elQuestion.textContent=question;
-
-var elWins = document.getElementById('wins');
-elWins.textContent="Wins: " + wins;
-
-var elLosses = document.getElementById('losses');
-elLosses.textContent="Losses: " + losses;
-
-var elGuessesLeft = document.getElementById('remaining');
-elLosses.textContent="Guesses left: " + guessesLeft;
-
-var elGuessesMade = document.getElementById('guessed');
-elGuessesMade.textContent= guessesMade;
-
+do{
 var userGuess = prompt("Try to guess my secret letter: ");
 
 document.onkeydown = function(event){
 var userGuess = event.key;
-console.log(guessesMade);
-let guessesMade = userGuess;
 
-if(guessesMade === letter){
+var guessesMade = userGuess;
+console.log(guessesMade);
+if(guessesMade == letter){
 
   alert("Great guess");
   // update score
   wins++;
-  
+  break;
 }
 else{
   alert("Not Quite!");
@@ -51,3 +52,4 @@ else{
 }
 
 }
+}while (guessesLeft != 0);
