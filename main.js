@@ -2,9 +2,7 @@ var letter='s';
 var wins=0;
 var losses=0;
 let heading = 'Psychic Game';
-let question = "Guess what letter i'm thinking of: ";
-var wins = 0;
-var losses = 0;
+// let question = "Guess what letter i'm thinking of: ";
 // var guessesLeft;
 var guessesLeft = 9;
 // var guessesMade;
@@ -13,43 +11,53 @@ var guessesMade = '';
 var el = document.getElementById('game');
   el.textContent=heading;
   
-  var elQuestion = document.getElementById('title');
-  elQuestion.textContent=question;
+  // var elQuestion = document.getElementById('title');
+  // elQuestion.textContent=question;
   
   var elWins = document.getElementById('wins');
-  elWins.textContent="Wins: " + wins;
+  elWins.textContent= wins;
   
   var elLosses = document.getElementById('losses');
-  elLosses.textContent="Losses: " + losses;
+  elLosses.textContent= losses;
   
   var elGuessesLeft = document.getElementById('remaining');
-  elLosses.textContent="Guesses left: " + guessesLeft;
+  elLosses.textContent= guessesLeft;
   
   var elGuessesMade = document.getElementById('guessed');
-  elGuessesMade.textContent= guessesMade.appendChild;
+  elGuessesMade.textContent= guessesMade;
 
-do{
-var userGuess = prompt("Try to guess my secret letter: ");
-
-document.onkeydown = function(event){
+document.onkeyup = function(event){
 var userGuess = event.key;
 
-var guessesMade = userGuess;
-console.log(guessesMade);
-if(guessesMade == letter){
+console.log('user guessed: ' + userGuess);
 
-  alert("Great guess");
+guessesMade += userGuess + ', ';
+
+if(guessesLeft === 0 && !(userGuess === letter)){
+losses++;
+// guessesLeft--;
+elLosses.textContent = losses;
+return alert('Game over!');
+}
+
+else if(guessesLeft > 0 && (userGuess === letter)){
   // update score
+  elWins.textContent = wins;
+  console.log('Win happened');
+  alert("Great guess");
   wins++;
-  break;
 }
 else{
-  alert("Not Quite!");
+  // alert("Not Quite!");
   // update score
-  losses++;
+  guessesMade += userGuess + ', ';
+  elGuessesMade.textContent = guessesMade;
+  console.log('guesses made: ' + guessesMade);
+  
   // guesses left
   guessesLeft--;
+  elGuessesLeft.textContent = guessesLeft;
+  console.log('guesses left: ' + guessesLeft);
 }
 
 }
-}while (guessesLeft != 0);
